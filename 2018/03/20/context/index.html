@@ -7,7 +7,7 @@
 <meta property="og:site_name" content="???">
 <meta property="og:description" content="scope: 변수의 범위 (Life Cycle?)    Global scope: 전역 scope12// global scopevar name = &quot;global&quot;     Local scope: 지역 scope, global scope 이외의…">
 <meta property="og:image" content="https://cdn-images-1.medium.com/max/2000/1*E2sHAWlBNqwjZdnUBPZLaA.png">
-<meta property="og:updated_time" content="2018-03-19T16:38:25.901Z">
+<meta property="og:updated_time" content="2019-01-19T13:54:46.919Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JavaScript Context">
 <meta name="twitter:description" content="scope: 변수의 범위 (Life Cycle?)    Global scope: 전역 scope12// global scopevar name = &quot;global&quot;     Local scope: 지역 scope, global scope 이외의…">
@@ -37,7 +37,7 @@ ga('send', 'pageview');</script></head><body itemscope itemtype="https://schema.
 </ul>
 <p><br></p>
 <ul>
-<li>Lexical scope<br>: 변수는 함수를 호출할 떄가 아니라 함수가 선언될 때 scope가 정해짐 (소스 레벨에서)<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> name = <span class="string">'A scope'</span>;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">log</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(name);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">wrapper</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">var</span> name = <span class="string">'B scope'</span>;</span><br><span class="line">    log();</span><br><span class="line">&#125;</span><br><span class="line">wrapper();</span><br></pre></td></tr></table></figure>
+<li>Lexical scope<br>: 변수는 함수를 호출할 때가 아니라 함수가 선언될 때 scope가 정해짐 (소스 레벨에서)<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> name = <span class="string">'A scope'</span>;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">log</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(name);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">wrapper</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">var</span> name = <span class="string">'B scope'</span>;</span><br><span class="line">    log();</span><br><span class="line">&#125;</span><br><span class="line">wrapper();</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
 <p><br></p>
@@ -65,7 +65,7 @@ ga('send', 'pageview');</script></head><body itemscope itemtype="https://schema.
   s.src = '//github-io-5.disqus.com/embed.js';
   s.setAttribute('data-timestamp', +new Date());
   (d.head || d.body).appendChild(s);
-})();</script><noscript>Enable JavaScript to see comments.</noscript><!-- Meta Tags for Structured Data--><meta itemprop="dateModified" content="2018-03-19T16:38:25.901Z"><meta itemprop="articleBody" content="
+})();</script><noscript>Enable JavaScript to see comments.</noscript><!-- Meta Tags for Structured Data--><meta itemprop="dateModified" content="2019-01-19T13:54:46.919Z"><meta itemprop="articleBody" content="
 
 scope: 변수의 범위 (Life Cycle?)
 
