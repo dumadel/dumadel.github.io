@@ -1,0 +1,64 @@
+<!DOCTYPE html><html><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><title>rpmbuild 정리 | ???</title><link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css"><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="/css/highlights/dracula.css"><link rel="canonical" href="https://dumadel.github.io/2018/12/13/rpmbuild-정리/"/>
+<meta name="description" content="RPM Build 내용 정리 Preamble: 패키지 기본 정보 # Preable ExampleSummary: RPM Build TestName: rpmbuilderVersion: 0.0.1Release: 1Copyright: GPLGroup:…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="rpmbuild 정리">
+<meta property="og:url" content="https://dumadel.github.io/2018/12/13/rpmbuild-정리/">
+<meta property="og:site_name" content="???">
+<meta property="og:description" content="RPM Build 내용 정리 Preamble: 패키지 기본 정보 # Preable ExampleSummary: RPM Build TestName: rpmbuilderVersion: 0.0.1Release: 1Copyright: GPLGroup:…">
+<meta property="og:image" content="https://upload.wikimedia.org/wikipedia/commons/thumb/0/00/RPM_Logo.svg/2880px-RPM_Logo.svg.png">
+<meta property="og:updated_time" content="2019-01-19T13:48:40.734Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="rpmbuild 정리">
+<meta name="twitter:description" content="RPM Build 내용 정리 Preamble: 패키지 기본 정보 # Preable ExampleSummary: RPM Build TestName: rpmbuilderVersion: 0.0.1Release: 1Copyright: GPLGroup:…">
+<meta name="twitter:image" content="https://upload.wikimedia.org/wikipedia/commons/thumb/0/00/RPM_Logo.svg/2880px-RPM_Logo.svg.png"><meta property="article:author" content="dumadel"><meta property="twitter:label1" content="Published at"><meta property="twitter:data1" content="2018-12-13 22:19:54"><meta property="twitter:label2" content="Written by"><meta property="twitter:data2" content="dumadel"><link rel="icon" href="/images/hhkb.png"><link rel="alternate" href="/atom.xml" type="application/atom+xml" title="???"><meta name="naver-site-verification" content="AAAAOwO5ShyZlav+qGXwhk/tfSAOJ70eNpicxWDON+dPM9mMnC008Q++GbrT3N1oOOeDAKPTbbKQBIyU7z44fkkK3bo="><script>(function(i,s,o,g,r,a,m) {i['GoogleAnalyticsObject']=r;i[r]=i[r]||function() {
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+ga('create', 'UA-109997151-1', 'auto');
+ga('send', 'pageview');</script></head><body itemscope itemtype="https://schema.org/WebPage"><nav class="menu" id="menu"><div class="menu-inner"><div class="menu__left-area"><div class="menu__item"><a class="menu__item__link menu__item__link--brand" href="/" title="Home" rel="home"><img class="menu__item__link--brand__image" src="/images/hhkb.png" alt="???"><span class="menu__item__link--brand__label">???</span></a></div></div><div class="menu__right-area"><div class="menu__item"><a class="menu__item__link" href="/">Home</a></div><div class="menu__item"><a class="menu__item__link" href="/about">About</a></div><div class="menu__item"><a class="menu__item__link" href="/archives">Archives</a></div></div></div></nav><div class="page-background"></div><div class="content-container"><div class="content-outer"><div class="content-inner" itemscope itemtype="https://schema.org/Blog"><article class="article" id="article" itemscope itemtype="https://schema.org/BlogPosting"><h1 class="article__title" itemprop="headline">rpmbuild 정리</h1><div class="article__meta"><time class="article__meta__time" datetime="2018-12-13T13:19:54.000Z" itemprop="datePublished">2018-12-13 22:19:54</time></div><hr><div class="article__contents"><p><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/00/RPM_Logo.svg/2880px-RPM_Logo.svg.png" alt=""></p>
+<h2 id="RPM-Build-내용-정리"><a href="#RPM-Build-내용-정리" class="headerlink" title="RPM Build 내용 정리"></a><strong>RPM Build 내용 정리</strong></h2><p><br></p>
+<h2 id="Preamble"><a href="#Preamble" class="headerlink" title="Preamble"></a><strong>Preamble</strong></h2><p>: 패키지 기본 정보</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Preable Example</span></span><br><span class="line"></span><br><span class="line">Summary: RPM Build Test</span><br><span class="line">Name: rpmbuilder</span><br><span class="line">Version: 0.0.1</span><br><span class="line">Release: 1</span><br><span class="line">Copyright: GPL</span><br><span class="line">Group: Application/Tools</span><br><span class="line">Source0: rpmbuilder.tgz</span><br><span class="line">Source1: rpm.service</span><br><span class="line">URL: http://dumadel.github.io</span><br><span class="line">Vendor: GNU</span><br><span class="line">Packager: dumadel</span><br><span class="line">BuildRoot: /root/temp/<span class="built_in">test</span></span><br><span class="line">Requires: python &gt; 3.4, tar, python-redis</span><br><span class="line">BuildRequires: python</span><br><span class="line"></span><br><span class="line">%description</span><br><span class="line">RPM build Preamble Example</span><br></pre></td></tr></table></figure>
+<p><br></p>
+<p><strong>- BuildRoot</strong><br>RPM 파일 빌드에 사용할 루트 디렉토리 지정<br>RPM 패키지 빌드 시 BuildRoot 위치를 루트 디렉토리로 간주하여 설치<br>해당 디렉토리를 cpio로 묶어서 RPM 파일 생성<br><br></p>
+<p><strong>- Requires</strong><br>RPM 설치 의존성 정보, 버전 체크 가능 (&gt;, &lt;, =, &gt;=, &lt;=)<br><br></p>
+<p><strong>- BuildRequires</strong><br>RPM 빌드 시 필요한 패키지 지정<br><br></p>
+<p><strong>- %description</strong><br>패키지 상세 설명<br><br></p>
+<p><strong>- %prep</strong><br>명령 부분의 시작, 소스 빌드 준비 전 작업 수행<br>소스 패치, make config 같이 빌드 전 작업 수행<br>shell script로 작성<br>%setup, %patch 매크로 사용 가능</p>
+<figure class="highlight bash"><figcaption><span>%prep</span></figcaption><table><tr><td class="code"><pre><span class="line">rm -rf <span class="variable">$RPM_BUILD_DIR</span>/<span class="built_in">test</span></span><br><span class="line">./configure</span><br></pre></td></tr></table></figure>
+<p><br></p>
+<p><strong>- %setup</strong><br>소스를 풀고 해당 소스 디렉토리로 이동하는 매크로</p>
+<p><strong>- %build</strong><br><strong>- %install</strong><br>%build에서 컴파일된 프로그램을 설치하는 명령어를 수행하는 부분<br>%build  다음에 실행<br>%build에서 생성된 파일을 설치 폴더로 복사</p>
+<p><br></p>
+<p><strong>- %files</strong><br>RPM 파일에 패키징 되어야 하는 파일 리스트<br>디렉토리 이름을 지정하는 경우 하위에 포함된 모든 파일 패키징</p>
+<p><strong>- %doc</strong><br>소스 패키지 내의 문서 파일 지정</p>
+<p><strong>- %config</strong><br>패키지 내의 설정 파일 지정<br>해당 파일은 패키지가 제거될 때 삭제 되지 않고 rpmsave 파일로 백업<br>설치시 기존 설정 파일이 존재하는 경우 옵션 지정 가능</p>
+<ul>
+<li>%config(missingok)<br>: 해당 config file이 없어도 가능</li>
+<li>%config(noreplace)<br>: 이미 존재하는 경우 기존 파일 사용 (설치용 파일은 rpmnew 파일로 저장)</li>
+<li>update???</li>
+</ul>
+<p><br></p>
+<p><strong>- %dir</strong><br>패캐지에 추가할 디렉토리 지정<br>지정된 디렉토림란 추가<br>하위까지 포함하고 싶은 경우 %files에 해당 경로 추가 필요</p>
+<p><strong>- %attr</strong><br>permission, mode, user id, group id 지정</p>
+<figure class="highlight bash"><figcaption><span>%attr</span></figcaption><table><tr><td class="code"><pre><span class="line"><span class="comment"># %attr(&lt;mode&gt;, &lt;user&gt;, &lt;group&gt;) file</span></span><br><span class="line">%attr(755, root, root) foo.js</span><br></pre></td></tr></table></figure>
+<p><strong>- %defattr</strong><br>permission, mode, user id, group id 지정</p>
+<figure class="highlight bash"><figcaption><span>%attr</span></figcaption><table><tr><td class="code"><pre><span class="line"><span class="comment"># %attr(&lt;mode&gt;, &lt;user&gt;, &lt;group&gt;) file</span></span><br><span class="line">%attr(755, root, root) foo.js</span><br></pre></td></tr></table></figure>
+<p><strong>- %post</strong><br>RPM 설치 이후 작업<br>설정 파일 값 변경이나 chkconfig 작업</p>
+<p><strong>- %postrun</strong><br>RPM 삭제 이후 추가 작업</p>
+<p><strong>- %package</strong><br>서브 패키지 생성</p>
+<p><strong>- %if, %else, %endif</strong><br>빌드 환경 체크</p>
+<ul>
+<li>%ifarch, %ifnarch : architecture 체크</li>
+<li>%ifos, %ifnos : 운영체제 검사</li>
+</ul>
+<p><strong>- RPM Macro</strong><br>rpmbuild 시 path 정보는 rpmmacros 파일에 정의</p>
+</div><div class="article__author" itemscope itemprop="author" itemtype="https://schema.org/Person"><img class="article__author__image" src="/images/hhkb.png" alt="dumadel"><a class="article__author__link" title="About dumadel" rel="author">dumadel</a><p class="article__author__desc">???</p><div class="article__author__socials"><a class="article__author__socials__item" href="https://github.com/dumadel" title="github" target="_blank"><i class="fa fa-github"></i></a><a class="article__author__socials__item" href="https://instagram.com/du.madel" title="instagram" target="_blank"><i class="fa fa-instagram"></i></a><a class="article__author__socials__item" href="/atom.xml" title="rss" target="_blank"><i class="fa fa-rss"></i></a></div><meta itemprop="name" content="dumadel"></div><div class="sharer" id="sharer"><div class="sharer-inner"><div class="sharer__right"><button class="sharer__item" id="sharer-facebook"><i class="fa fa-facebook-official"></i></button><button class="sharer__item" id="sharer-twitter"><i class="fa fa-twitter"></i></button><button class="sharer__item" id="sharer-pinterest"><i class="fa fa-pinterest"></i></button><button class="sharer__item" id="sharer-pocket"><i class="fa fa-get-pocket"></i></button></div></div></div><!-- Disqus Code--><div id="disqus_thread"></div><script>(function() {
+  var d = document, s = d.createElement('script');
+  s.src = '//github-io-5.disqus.com/embed.js';
+  s.setAttribute('data-timestamp', +new Date());
+  (d.head || d.body).appendChild(s);
+})();</script><noscript>Enable JavaScript to see comments.</noscript><!-- Meta Tags for Structured Data--><meta itemprop="dateModified" content="2019-01-19T13:48:40.734Z"><meta itemprop="articleBody" content="
+RPM Build 내용 정리
+Preamble: 패키지 기본 정보
+# Preable ExampleSummary: RPM Build TestName: rpmbuilderVersion: 0.0.1Release: 1Copyright: GPLGroup: Application/ToolsSource0: rpmbuilder.tgzSource1:..."><meta itemprop="url" content="https://dumadel.github.io/2018/12/13/rpmbuild-정리/"><meta itemprop="mainEntityOfPage" content="https://dumadel.github.io/2018/12/13/rpmbuild-정리/"><div itemscope itemtype="https://schema.org/Organization" itemprop="publisher"><meta itemprop="name" content="???"><div itemscope itemprop="logo" itemtype="https://schema.org/ImageObject"><meta itemprop="url" content="https://dumadel.github.io/images/hhkb.png"></div></div><div itemscope itemtype="https://schema.org/ImageObject" itemprop="image"><meta itemprop="contentUrl" content="https://dumadel.github.io/images/mac.jpg"><meta itemprop="url" content="https://dumadel.github.io/images/mac.jpg"><meta itemprop="width" content="1280"><meta itemprop="height" content="720"></div></article></div></div></div><footer id="footer"><div class="widgets"><div class="widgets-inner"><!-- Jade doesn't support dynamic inclusion with `each`.--><!-- So, I just hard coded the file names that will be included.--><div class="widgets__item"><h3 class="widgets__item__heading">Recent posts</h3><ul class="recent-posts"><li class="recent-posts__item"><a href="/2018/12/13/rpmbuild-정리/">rpmbuild 정리</a></li><li class="recent-posts__item"><a href="/2018/03/20/context/">JavaScript Context</a></li><li class="recent-posts__item"><a href="/2017/12/06/https/">HTTPS Certificate</a></li><li class="recent-posts__item"><a href="/2017/12/05/hello-world/">Atom Plugins</a></li></ul></div><div class="widgets__item"><h3 class="widgets__item__heading">Archives</h3><ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">December 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">December 2017</a><span class="archive-list-count">2</span></li></ul></div><div class="widgets__item"><h3 class="widgets__item__heading">Categories</h3></div></div></div><p class="copyright"><small>© 2019 dumadel<br>Powered by <a href="https://hexo.io" rel="external" target="_blank">Hexo</a>, Theme by <a href="https://github.com/hyunseob/hexo-theme-overdose" rel="external" target="_blank">Overdose</a></small></p></footer><!--[if lt IE 10]><script src="/js/classList.min.js"></script><![endif]--><script src="/js/index.min.js"></script></body></html>
